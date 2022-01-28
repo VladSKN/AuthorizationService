@@ -2,7 +2,6 @@ package ru.netology.authorizationservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
