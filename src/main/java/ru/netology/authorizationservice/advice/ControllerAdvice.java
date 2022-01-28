@@ -1,13 +1,12 @@
 package ru.netology.authorizationservice.advice;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.netology.authorizationservice.exception.InvalidCredentials;
 import ru.netology.authorizationservice.exception.UnauthorizedUser;
-
-import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ControllerAdvice {
@@ -26,8 +25,8 @@ public class ControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(ConstraintViolationException.class)
-    public String cveHandler(Exception e) {
+    @ExceptionHandler(Exception.class)
+    public String beHandler(BindException e) {
         return e.getMessage();
     }
 }

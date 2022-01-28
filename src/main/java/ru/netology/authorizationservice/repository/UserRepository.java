@@ -19,12 +19,12 @@ public class UserRepository {
     private final List<Authorities> writerAuthorities = List.of(Authorities.WRITE);
 
 
-    public List<Authorities> getUserAuthorities(String user, String password) {
-        if (admin.getName().equals(user) && (admin.getPassword().equals(password))) {
+    public List<Authorities> getUserAuthorities(User user) {
+        if (admin.getUser().equals(user.getUser()) && (admin.getPassword().equals(user.getPassword()))) {
             return adminAuthorities;
-        } else if (reader.getName().equals(user) && (reader.getPassword().equals(password))) {
+        } else if (reader.getUser().equals(user.getUser()) && (reader.getPassword().equals(user.getPassword()))) {
             return readerAuthorities;
-        } else if (writer.getName().equals(user) && (writer.getPassword().equals(password))) {
+        } else if (writer.getUser().equals(user.getUser()) && (writer.getPassword().equals(user.getPassword()))) {
             return writerAuthorities;
         }
         return new ArrayList<>();
