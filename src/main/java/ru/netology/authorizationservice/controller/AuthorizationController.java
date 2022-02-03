@@ -1,6 +1,5 @@
 package ru.netology.authorizationservice.controller;
 
-import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,11 +11,14 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @Validated
 public class AuthorizationController {
 
-    private AuthorizationService service;
+    private final AuthorizationService service;
+
+    public AuthorizationController(AuthorizationService service) {
+        this.service = service;
+    }
 
     @GetMapping("/authorize")
     public List<Authorities> getAuthorities(@RequestParam("user") @Size(min = 2, max = 20) String user,

@@ -1,6 +1,5 @@
 package ru.netology.authorizationservice.service;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -12,10 +11,13 @@ import ru.netology.authorizationservice.repository.UserRepository;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class AuthorizationService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AuthorizationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<Authorities> getAuthorities(String user, String password) {
         if (!StringUtils.hasText(user) || !StringUtils.hasText(password)) {
